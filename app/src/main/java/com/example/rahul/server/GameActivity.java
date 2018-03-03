@@ -39,15 +39,18 @@ public class GameActivity extends AppCompatActivity {
 
                     // dealing cards
                     ArrayList<ArrayList<Integer>> playerCards = new ArrayList<>();
-
-                    String bid = server.getClient(0).getTcpSocket().receive();
-                    Log.e("check"," "+bid);
-                    /*
                     for(int i=0; i<4; i++){
-                        server.getClient(finalTableNo*4 + i).getTcpSocket().send(playerCards.get(i).toString());
+                        ArrayList<Integer> temp = new ArrayList<>();
+                        for(int j=0; j<13 ;j++){
+                            temp.add(j, deck.get(i*13 + j));
+                        }
+                        playerCards.add(i, temp);
                     }
-                    */
 
+                    server.getClient(0).getTcpSocket().send(playerCards.get(0).toString());
+                    String bid = server.getClient(0).getTcpSocket().receive();
+
+                    Log.e("check",""+bid);
                 }
             });
 
