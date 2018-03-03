@@ -34,7 +34,10 @@ public class GameActivity extends AppCompatActivity {
                     ArrayList<Integer> deck = new ArrayList<>();
 
                     // suitOrder Ascending    club < diamond < heart < spade < noTrump
-                    for(int i=0;i<52;i++) deck.add(i);
+                    for(int i=102;i<115;i++) deck.add(i);  // club 2 to club ace
+                    for(int i=202;i<215;i++) deck.add(i);  // diamond 2 to diamond ace
+                    for(int i=302;i<315;i++) deck.add(i);  // hearts 2 to haerts ace
+                    for(int i=402;i<415;i++) deck.add(i);  // spade 2 to spae ace
                     Collections.shuffle(deck);
 
                     // dealing cards
