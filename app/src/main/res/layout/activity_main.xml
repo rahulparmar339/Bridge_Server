@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp" >
+
+    <TextView
+        android:id="@+id/GameTitleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:text="@string/GameTitleText"
+        android:textColorLink="@android:color/black"
+        tools:text="BridgeGame Server" />
+
+    <TextView
+        android:id="@+id/ServerNameTextView"
+        android:layout_width="100dp"
+        android:layout_height="25dp"
+        android:layout_alignBottom="@+id/ServerNameEditText"
+        android:layout_alignTop="@+id/ServerNameEditText"
+        android:layout_marginLeft="14dp"
+        android:layout_marginStart="14dp"
+        android:gravity="center"
+        android:text="@string/ServerNameText"
+        tools:text="Server Name" />
+
+    <EditText
+        android:id="@+id/ServerNameEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/GameTitleTextView"
+        android:layout_marginLeft="30dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="15dp"
+        android:layout_toEndOf="@+id/ServerNameTextView"
+        android:layout_toRightOf="@+id/ServerNameTextView"
+        android:ems="10"
+        android:inputType="text"
+        android:text="@string/ServerNameEditText"
+        tools:text="Enter Server Name" />
+
+    <TextView
+        android:id="@+id/NumerOfPairTextView"
+        android:layout_width="100dp"
+        android:layout_height="45dp"
+        android:layout_alignLeft="@+id/ServerNameTextView"
+        android:layout_alignStart="@+id/ServerNameTextView"
+        android:layout_below="@+id/ServerNameTextView"
+        android:layout_marginTop="25dp"
+        android:layout_toLeftOf="@+id/ServerNameEditText"
+        android:layout_toStartOf="@+id/ServerNameEditText"
+        android:gravity="center"
+        android:text="@string/NumberOfPairText"
+        tools:text="Number Of Pair" />
+
+    <EditText
+        android:id="@+id/NumberOfPairEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/ServerNameEditText"
+        android:layout_alignStart="@+id/ServerNameEditText"
+        android:layout_alignTop="@+id/NumerOfPairTextView"
+        android:ems="10"
+        android:inputType="number"
+        android:text="@string/NumberOfPairEditText"
+        tools:text="Enter Number Of Pairs" />
+
+    <TextView
+        android:id="@+id/MovementTypeTextView"
+        android:layout_width="100dp"
+        android:layout_height="45dp"
+        android:layout_alignLeft="@+id/NumerOfPairTextView"
+        android:layout_alignStart="@+id/NumerOfPairTextView"
+        android:layout_alignTop="@+id/MovementTypeDropDown"
+        android:gravity="center"
+        android:text="@string/MovementTypeText"
+        tools:text="Movement Type" />
+
+    <Spinner
+        android:id="@+id/MovementTypeDropDown"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_alignEnd="@+id/NumberOfPairEditText"
+        android:layout_alignLeft="@+id/NumberOfPairEditText"
+        android:layout_alignRight="@+id/NumberOfPairEditText"
+        android:layout_alignStart="@+id/NumberOfPairEditText"
+        android:layout_below="@+id/NumberOfPairEditText"
+        android:layout_marginTop="30dp" />
+
+    <TextView
+        android:id="@+id/BoardsPerTableTextView"
+        android:layout_width="100dp"
+        android:layout_height="45dp"
+        android:layout_above="@+id/ScoringTypeDropDown"
+        android:layout_alignLeft="@+id/MovementTypeTextView"
+        android:layout_alignStart="@+id/MovementTypeTextView"
+        android:gravity="center"
+        android:text="@string/BoardsPerTableText"
+        tools:text="Boards Per Table " />
+
+    <EditText
+        android:id="@+id/BoardsPerTableEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/MovementTypeDropDown"
+        android:layout_alignStart="@+id/MovementTypeDropDown"
+        android:layout_below="@+id/MovementTypeDropDown"
+        android:layout_marginTop="29dp"
+        android:ems="10"
+        android:inputType="number"
+        android:text="@string/BoardsPerTableEditText"
+        tools:text="Enter Boards Per Table" />
+
+    <TextView
+        android:id="@+id/ScoringTypeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/StartServerButton"
+        android:layout_alignEnd="@+id/BoardsPerTableTextView"
+        android:layout_alignLeft="@+id/BoardsPerTableTextView"
+        android:layout_alignRight="@+id/BoardsPerTableTextView"
+        android:layout_alignStart="@+id/BoardsPerTableTextView"
+        android:layout_alignTop="@+id/ScoringTypeDropDown"
+        android:gravity="center"
+        android:text="@string/ScoringTypeText"
+        tools:text="Scoring Type" />
+
+    <Spinner
+        android:id="@+id/ScoringTypeDropDown"
+        android:layout_width="200dp"
+        android:layout_height="45dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/BoardsPerTableEditText"
+        android:layout_marginTop="24dp" />
+
+    <Button
+        android:id="@+id/StartServerButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ScoringTypeDropDown"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="38dp"
+        android:text="@string/StartServerButtonText"
+        android:onClick="onClickStartServer"
+        tools:text="Start Server" />
+
+</RelativeLayout>

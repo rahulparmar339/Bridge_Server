@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp" >
+
+    <TextView
+        android:id="@+id/tableNoTitleTextView"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="19dp"
+        android:text="@string/tableNumberTitleText"
+        tools:text="Table No." />
+
+    <TextView
+        android:id="@+id/northTitleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/tableNoTitleTextView"
+        android:layout_alignTop="@+id/tableNoTitleTextView"
+        android:layout_toEndOf="@+id/tableNoTitleTextView"
+        android:layout_toRightOf="@+id/tableNoTitleTextView"
+        android:text="@string/northTitleText"
+        tools:text="  North   " />
+
+    <TextView
+        android:id="@+id/southTitleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/northTitleTextView"
+        android:layout_alignTop="@+id/northTitleTextView"
+        android:layout_toEndOf="@+id/northTitleTextView"
+        android:layout_toRightOf="@+id/northTitleTextView"
+        android:text="@string/southTitleText"
+        tools:text="  South  " />
+
+    <TextView
+        android:id="@+id/eastTitleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/southTitleTextView"
+        android:layout_alignTop="@+id/southTitleTextView"
+        android:layout_toEndOf="@+id/southTitleTextView"
+        android:layout_toRightOf="@+id/southTitleTextView"
+        android:text="@string/eastTitleText"
+        tools:text="  East  " />
+
+    <TextView
+        android:id="@+id/westTitleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/eastTitleTextView"
+        android:layout_alignTop="@+id/eastTitleTextView"
+        android:layout_toEndOf="@+id/eastTitleTextView"
+        android:layout_toRightOf="@+id/eastTitleTextView"
+        android:text="@string/westTitleText"
+        tools:text="  West  " />
+
+    <Button
+        android:id="@+id/startTournamentButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/northTitleTextView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="140dp"
+        android:onClick="onClickStartTournament"
+        android:text="@string/startTournamentButtonText" />
+
+</RelativeLayout>

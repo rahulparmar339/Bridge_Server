@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">Server</string>
+    <string name="GameTitleText">Bridge Game Server</string>
+    <string name="ServerNameText">Server Name</string>
+    <string name="ServerNameEditText">Enter Server Name</string>
+    <string name="NumberOfPairText">Number Of Pair</string>
+    <string name="NumberOfPairEditText">2</string>
+    <string name="MovementTypeText">Movement Type</string>
+    <string name="BoardsPerTableEditText">1</string>
+    <string name="BoardsPerTableText">Boards per Table</string>
+    <string name="ScoringTypeText">Scoring Type</string>
+    <string name="StartServerButtonText">Start Server</string>
+
+
+    <string name="tableNumberTitleText">Table No.</string>
+    <string name="northTitleText">North</string>
+    <string name="southTitleText">South</string>
+    <string name="eastTitleText">East</string>
+    <string name="westTitleText">West</string>
+    <string name="startTournamentButtonText">Button</string>
+
+
+    <string-array name="MovementType_Array">
+        <item>howell</item>
+        <item>mitchell</item>
+    </string-array>
+    <string-array name="ScoringType_Array">
+        <item>IMP Scoring</item>
+        <item>Normal Scoring</item>
+    </string-array>
+
+</resources>
