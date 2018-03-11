@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 
 public class GameActivity extends AppCompatActivity {
@@ -49,11 +50,49 @@ public class GameActivity extends AppCompatActivity {
                         }
                         playerCards.add(i, temp);
                     }
+                    //sending cards
+                    for(int i=0; i<4; i++){
+                        server.getClient(finalTableNo*4 + i).getTcpSocket().send(playerCards.get(i).toString());
+                    }
+                    int currBid = 0;
+                    int currBidder = 0;
+                    int lastProposer = -1;
+                    int doubleStatus = 0;
+                    int passCount = 0;
+                    int redoubleStatus = 0;
+                    int suitProposer[] = new int[10];
+                    Arrays.fill(suitProposer,-1);
 
-                    server.getClient(0).getTcpSocket().send(playerCards.get(0).toString());
-                    String bid = server.getClient(0).getTcpSocket().receive();
+                    while(true) {
+                        if (currBidder == lastProposer)
+                            break;
 
-                    Log.e("check",""+bid);
+                        String bidData = currBid + " " + lastProposer + " " + doubleStatus + " " + redoubleStatus;
+                        server.getClient(finalTableNo * 4 + currBidder).getTcpSocket().send(bidData);
+
+                        String inputBid = server.getClient(finalTableNo * 4 + currBidder).getTcpSocket().receive();
+                        int inputBidInt = Integer.parseInt(inputBid);
+                        if (inputBidInt >= 0) {
+                            currBid = inputBidInt;
+                            lastProposer = currBidder;
+                            int temp = (currBidder % 2) * 5 + (currBid % 5);    // -1???????????
+                            if (suitProposer[temp] == -1)
+                                suitProposer[temp] = currBidder;
+                        } else if (inputBidInt == -1) {
+                            doubleStatus = 1;
+                        } else if (inputBidInt == -2) {
+                            redoubleStatus = 1;
+                        } else if (inputBidInt == -3) {
+                            passCount++;
+                            if (passCount == 4)
+                                break;
+                        }
+                        currBidder = (currBidder + 1) % 4;
+                    }
+
+                    for(int i=0; i<4 ;i++){
+                        server.getClient(finalTableNo*4 + i).getTcpSocket().send("bid finished");
+                    }
                 }
             });
 
