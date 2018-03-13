@@ -13,14 +13,14 @@ import java.net.Socket;
  */
 
 public class TCPSocket {
-    private static Socket socket = null;
+    private  Socket socket = null;
 
-    private static OutputStream outputStream = null;
-    private static PrintWriter printWriter = null;
+    private  OutputStream outputStream = null;
+    private  PrintWriter printWriter = null;
 
-    private static InputStream inputStream = null;
-    private static InputStreamReader inputStreamReader = null;
-    private static BufferedReader bufferedReader = null;
+    private  InputStream inputStream = null;
+    private  InputStreamReader inputStreamReader = null;
+    private  BufferedReader bufferedReader = null;
 
 
     public TCPSocket(Socket clientSocket){

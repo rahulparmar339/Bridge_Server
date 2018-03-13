@@ -49,11 +49,11 @@ public class Server {
     }
 
 
-    public void setClient(int index, Client client){
-        this.client[index] = client;
+    public void setClient(int index, Client c){
+        client[index] = c;
     }
     public Client getClient(int index){
-        return this.client[index];
+        return client[index];
     }
 
 }

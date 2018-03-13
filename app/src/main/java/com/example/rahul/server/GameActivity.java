@@ -51,9 +51,10 @@ public class GameActivity extends AppCompatActivity {
                         playerCards.add(i, temp);
                     }
                     //sending cards
-                    for(int i=0; i<4; i++){
+                    for(int i=0; i<2; i++){
                         server.getClient(finalTableNo*4 + i).getTcpSocket().send(playerCards.get(i).toString());
                     }
+
                     int currBid = 0;
                     int currBidder = 0;
                     int lastProposer = -1;
@@ -70,29 +71,33 @@ public class GameActivity extends AppCompatActivity {
                         String bidData = currBid + " " + lastProposer + " " + doubleStatus + " " + redoubleStatus;
                         server.getClient(finalTableNo * 4 + currBidder).getTcpSocket().send(bidData);
 
+                        Log.e("check","bidData: "+bidData+" "+currBidder);
+
                         String inputBid = server.getClient(finalTableNo * 4 + currBidder).getTcpSocket().receive();
+
                         int inputBidInt = Integer.parseInt(inputBid);
-                        if (inputBidInt >= 0) {
+                        if (inputBidInt >= 0 && inputBidInt<35) {
                             currBid = inputBidInt;
                             lastProposer = currBidder;
                             int temp = (currBidder % 2) * 5 + (currBid % 5);    // -1???????????
                             if (suitProposer[temp] == -1)
                                 suitProposer[temp] = currBidder;
-                        } else if (inputBidInt == -1) {
+                        } else if (inputBidInt == 37) {
                             doubleStatus = 1;
-                        } else if (inputBidInt == -2) {
+                        } else if (inputBidInt == 35) {
                             redoubleStatus = 1;
-                        } else if (inputBidInt == -3) {
+                        } else if (inputBidInt == 36) {
                             passCount++;
-                            if (passCount == 4)
+                            if (passCount == 2)
                                 break;
                         }
-                        currBidder = (currBidder + 1) % 4;
+                        currBidder = (currBidder + 1) % 2;
                     }
 
-                    for(int i=0; i<4 ;i++){
+                    for(int i=0; i<2 ;i++){
                         server.getClient(finalTableNo*4 + i).getTcpSocket().send("bid finished");
                     }
+
                 }
             });
 
