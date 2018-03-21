@@ -138,12 +138,17 @@ public class GameActivity extends AppCompatActivity {
 
                                 if (currSuit == -1)
                                     currSuit = currHand[currPlayer] / 100;
-
+                                if(i==0) {
+                                    for (int j = 0; j < 4; j++) {
+                                        server.getClient(finalTableNo * 4 + j).getTcpSocket().send("handComplete");
+                                    }
+                                }
                                 for (int j = 0; j < 4; j++) {
                                     server.getClient(finalTableNo * 4 + j).getTcpSocket().send("displayPlayedCard " + currPlayer + " " + currHand[currPlayer]);
                                 }
                                 currPlayer = (currPlayer + 1) % 4;
                             }
+
 
                             int maxCard = currHand[currPlayer];
                             int maxPlayer = currPlayer;
@@ -152,7 +157,7 @@ public class GameActivity extends AppCompatActivity {
                                 int playedSuit = currHand[currPlayer] / 100;
                                 if (playedSuit == trump) {
                                     if (currHand[currPlayer] + 1000 > maxCard) {
-                                        maxCard = currHand[currPlayer];
+                                        maxCard = currHand[currPlayer] + 1000;
                                         maxPlayer = currPlayer;
                                     }
                                 } else if (playedSuit == currSuit) {
