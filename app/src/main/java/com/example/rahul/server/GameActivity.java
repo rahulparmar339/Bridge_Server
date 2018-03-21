@@ -51,7 +51,7 @@ public class GameActivity extends AppCompatActivity {
                         playerCards.add(i, temp);
                     }
                     //sending cards
-                    for(int i=0; i<2; i++){
+                    for(int i=0; i<4; i++){
                         server.getClient(finalTableNo*4 + i).getTcpSocket().send(playerCards.get(i).toString());
                     }
 
@@ -61,6 +61,7 @@ public class GameActivity extends AppCompatActivity {
                     int doubleStatus = 0;
                     int passCount = 0;
                     int redoubleStatus = 0;
+                    boolean allPass = false;
                     int suitProposer[] = new int[10];
                     Arrays.fill(suitProposer,-1);
 
@@ -74,11 +75,11 @@ public class GameActivity extends AppCompatActivity {
                         Log.e("check","bidData: "+bidData+" "+currBidder);
 
                         String inputBid = server.getClient(finalTableNo * 4 + currBidder).getTcpSocket().receive();
-
                         int inputBidInt = Integer.parseInt(inputBid);
                         if (inputBidInt >= 0 && inputBidInt<35) {
                             currBid = inputBidInt;
                             lastProposer = currBidder;
+                            passCount = 0;
                             int temp = (currBidder % 2) * 5 + (currBid % 5);    // -1???????????
                             if (suitProposer[temp] == -1)
                                 suitProposer[temp] = currBidder;
@@ -88,16 +89,95 @@ public class GameActivity extends AppCompatActivity {
                             redoubleStatus = 1;
                         } else if (inputBidInt == 36) {
                             passCount++;
-                            if (passCount == 2)
+                            if (passCount == 4) {
+                                // all pass code
+                                allPass = true;
                                 break;
+                            }
                         }
-                        currBidder = (currBidder + 1) % 2;
+                        currBidder = (currBidder + 1) % 4;
                     }
 
-                    for(int i=0; i<2 ;i++){
+                    for(int i=0; i<4 ;i++){
                         server.getClient(finalTableNo*4 + i).getTcpSocket().send("bid finished");
                     }
 
+                    if(!allPass) {
+
+                        int temp = (lastProposer % 2) * 5 + (currBid % 5);
+                        int currPlayer = (suitProposer[temp] + 1) % 4;
+                        int dummyPlayer = (currPlayer + 1) % 4;
+                        int trump = (currBid % 5) + 1;
+                        int teamScore[] = new int[2];
+                        int winnerTeam = -1;
+                        boolean firstCard = true;
+
+                        while (true) {
+                            int currHand[] = new int[4];
+                            int currSuit = -1;
+                            for (int i = 0; i < 4; i++) {
+                                Log.e("check",""+i+" "+currPlayer);
+                                if(currPlayer == dummyPlayer){
+                                    server.getClient(finalTableNo*4 + (currPlayer+2)%4).getTcpSocket().send("currSuit dummyTurn " + currSuit);
+                                    currHand[currPlayer] = Integer.parseInt(server.getClient(finalTableNo * 4 + (currPlayer+2)%4).getTcpSocket().receive());
+                                }
+                                else{
+                                    server.getClient(finalTableNo*4 + currPlayer).getTcpSocket().send("currSuit yourTurn " + currSuit);
+                                    currHand[currPlayer] = Integer.parseInt(server.getClient(finalTableNo * 4 + currPlayer).getTcpSocket().receive());
+                                }
+
+                                if(firstCard){
+                                    for(int j=0; j<4; j++){
+                                        if(j != dummyPlayer) {
+                                            server.getClient(finalTableNo * 4 + j).getTcpSocket().send("dummyPlayer " + dummyPlayer);
+                                            server.getClient(finalTableNo * 4 + j).getTcpSocket().send(playerCards.get(dummyPlayer).toString());
+                                        }
+                                    }
+                                    firstCard = false;
+                                }
+
+                                if (currSuit == -1)
+                                    currSuit = currHand[currPlayer] / 100;
+
+                                for (int j = 0; j < 4; j++) {
+                                    server.getClient(finalTableNo * 4 + j).getTcpSocket().send("displayPlayedCard " + currPlayer + " " + currHand[currPlayer]);
+                                }
+                                currPlayer = (currPlayer + 1) % 4;
+                            }
+
+                            int maxCard = currHand[currPlayer];
+                            int maxPlayer = currPlayer;
+                            for (int i = 0; i < 3; i++) {
+                                currPlayer = (currPlayer + 1) % 4;
+                                int playedSuit = currHand[currPlayer] / 100;
+                                if (playedSuit == trump) {
+                                    if (currHand[currPlayer] + 1000 > maxCard) {
+                                        maxCard = currHand[currPlayer];
+                                        maxPlayer = currPlayer;
+                                    }
+                                } else if (playedSuit == currSuit) {
+                                    if (currHand[currPlayer] > maxCard) {
+                                        maxCard = currHand[currPlayer];
+                                        maxPlayer = currPlayer;
+                                    }
+                                }
+                            }
+                            teamScore[maxPlayer % 2]++;
+                            currPlayer = maxPlayer;
+
+                            Log.e("check", "gameData: " + trump + " " + currPlayer + " " + currHand.toString());
+
+                            if (teamScore[0] + teamScore[1] == 13) {
+                                int targetBid = 6 + (currBid / 5) + 1;
+                                if (teamScore[lastProposer % 2] >= targetBid) {
+                                    winnerTeam = lastProposer % 2;
+                                } else {
+                                    winnerTeam = (lastProposer + 1) % 2;
+                                }
+                                break;
+                            }
+                        }
+                    }
                 }
             });
 
