@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -12,6 +13,7 @@ import java.util.Collections;
 public class GameActivity extends AppCompatActivity {
 
     Server server = null;
+    ArrayList<ArrayList<Integer>> deck;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +25,31 @@ public class GameActivity extends AppCompatActivity {
     }
 
     public void startTournament(){
+        createDeck();
+
+        startRound();
+    }
+
+    public void createDeck(){
+        deck = new ArrayList<>();
+        int totalDeck =  server.getBoardsPerTable() * server.getNoOfPair()/2;
+
+        for(int i=0; i<totalDeck; i++){
+            ArrayList<Integer> newDeck = new ArrayList<>();
+            // suitOrder Ascending    club < diamond < heart < spade < noTrump
+            for(int j=102;j<115;j++) newDeck.add(j);  // club 2 to club ace
+            for(int j=202;j<215;j++) newDeck.add(j);  // diamond 2 to diamond ace
+            for(int j=302;j<315;j++) newDeck.add(j);  // hearts 2 to haerts ace
+            for(int j=402;i<415;i++) newDeck.add(j);  // spade 2 to spae ace
+            Collections.shuffle(newDeck);
+
+            deck.add(newDeck);
+        }
+
+
+    }
+
+    public void startRound(){
         int tableCount = server.getNoOfPair()/2;
 
         for(int tableNo=0; tableNo<tableCount; tableNo++){

@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Bridge_Server.iml" filepath="$PROJECT_DIR$/Bridge_Server.iml" />
       <module fileurl="file://C:\Users\rahul\OneDrive\Desktop\Bridge_Game\Server\Bridge_Server.iml" filepath="C:\Users\rahul\OneDrive\Desktop\Bridge_Game\Server\Bridge_Server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Server.iml" filepath="$PROJECT_DIR$/Server.iml" />
       <module fileurl="file://C:\Users\Mayur\Documents\GitHub\Bridge_Server\Server.iml" filepath="C:\Users\Mayur\Documents\GitHub\Bridge_Server\Server.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>

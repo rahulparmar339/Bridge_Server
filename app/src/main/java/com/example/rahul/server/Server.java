@@ -56,4 +56,9 @@ public class Server {
         return client[index];
     }
 
+    public int getBoardsPerTable(){
+        return boardsPerTable;
+    }
+
+
 }
