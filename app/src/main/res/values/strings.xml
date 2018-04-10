@@ -12,12 +12,7 @@
     <string name="StartServerButtonText">Start Server</string>
 
 
-    <string name="tableNumberTitleText">Table No.</string>
-    <string name="northTitleText">North</string>
-    <string name="southTitleText">South</string>
-    <string name="eastTitleText">East</string>
-    <string name="westTitleText">West</string>
-    <string name="startTournamentButtonText">Button</string>
+    <string name="startTournamentButtonText">Start Tournament</string>
 
 
     <string-array name="MovementType_Array">
