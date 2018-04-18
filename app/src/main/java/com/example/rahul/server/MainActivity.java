@@ -62,9 +62,13 @@ public class MainActivity extends AppCompatActivity {
         String movementType = movementTypeSpinner.getSelectedItem().toString();
         intent.putExtra("movementType",movementType);
 
+        server.setMovementType(movementType);
+
         EditText boardsPerTableEditText = findViewById(R.id.BoardsPerTableEditText);
         int boardsPerTable = Integer.parseInt(boardsPerTableEditText.getText().toString());
         intent.putExtra("boardsPerTable",boardsPerTable);
+
+        server.setBoardsPerTable(boardsPerTable);
 
         Spinner scoringTypeSpinner = (Spinner)findViewById(R.id.ScoringTypeDropDown);
         String scoringType = scoringTypeSpinner.getSelectedItem().toString();

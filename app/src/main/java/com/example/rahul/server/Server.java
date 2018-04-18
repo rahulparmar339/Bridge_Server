@@ -56,8 +56,18 @@ public class Server {
         return client[index];
     }
 
+    public void setBoardsPerTable(int bpt){
+        boardsPerTable = bpt;
+    }
     public int getBoardsPerTable(){
         return boardsPerTable;
+    }
+
+    public void setMovementType(String type){
+        movementType = type;
+    }
+    public String getMovementType(){
+        return movementType;
     }
 
 

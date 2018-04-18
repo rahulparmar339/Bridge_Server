@@ -1,9 +1,168 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.example.rahul.server.GameActivity">
+    android:layout_height="match_parent">
 
-</android.support.constraint.ConstraintLayout>
+
+    <HorizontalScrollView
+        android:id="@+id/horizontalScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10px">
+
+        <ScrollView
+            android:id="@+id/verticalScrollView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="10px">
+
+
+            <TableLayout
+                android:id="@+id/gameScoreTableLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_margin="5dp"
+                        android:text="Board"
+                        android:textStyle="bold"
+                        android:typeface="serif"></TextView>
+
+                    <TextView
+                        android:layout_margin="5dp"
+                        android:text="Dealer"
+                        android:textStyle="bold"
+                        android:typeface="serif"></TextView>
+
+                    <TextView
+                        android:layout_margin="5dp"
+                        android:text="Vulnerability"
+                        android:textStyle="bold"
+                        android:typeface="serif"></TextView>
+
+                    <TextView
+                        android:layout_margin="5dp"
+                        android:text="Declarer"
+                        android:textStyle="bold"
+                        android:typeface="serif"></TextView>
+
+                    <TextView
+                        android:layout_margin="5dp"
+                        android:text="Contract"
+                        android:textStyle="bold"
+                        android:typeface="serif"></TextView>
+
+                    <TextView
+                        android:layout_margin="5dp"
+                        android:text="Made"
+                        android:textStyle="bold"
+                        android:typeface="serif"></TextView>
+
+                    <TextView
+                        android:layout_margin="5dp"
+                        android:text="Down"
+                        android:textStyle="bold"
+                        android:typeface="serif"></TextView>
+
+                    <TextView
+                        android:layout_margin="5dp"
+                        android:text="Contract_Points"
+                        android:textStyle="bold"
+                        android:typeface="serif"></TextView>
+
+                    <TextView
+                        android:layout_margin="5dp"
+                        android:text="Feb 11"
+                        android:textStyle="bold"
+                        android:typeface="serif"></TextView>
+
+                    <TextView
+                        android:layout_margin="5dp"
+                        android:text="Overtrick_Points"
+                        android:textStyle="bold"
+                        android:typeface="serif"></TextView>
+
+                    <TextView
+                        android:layout_margin="5dp"
+                        android:text="Slam_Bonus"
+                        android:textStyle="bold"
+                        android:typeface="serif"></TextView>
+
+                    <TextView
+                        android:layout_margin="5dp"
+                        android:text="(Re)doubled_Bonus"
+                        android:textStyle="bold"
+                        android:typeface="serif"></TextView>
+
+                    <TextView
+                        android:layout_margin="5dp"
+                        android:text="Game_Points"
+                        android:textStyle="bold"
+                        android:typeface="serif"></TextView>
+
+                    <TextView
+                        android:layout_margin="5dp"
+                        android:text="Total_N-S"
+                        android:textStyle="bold"
+                        android:typeface="serif"></TextView>
+
+                    <TextView
+                        android:layout_margin="5dp"
+                        android:text="Total_E-W"
+                        android:textStyle="bold"
+                        android:typeface="serif"></TextView>
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/textView20"
+                        android:layout_margin="5dp"
+                        android:text="Day High"
+                        android:textStyle="bold"></TextView>
+
+                    <TextView
+                        android:id="@+id/textView30"
+                        android:layout_margin="5dp"
+                        android:gravity="center_horizontal"
+                        android:text="28°F"></TextView>
+
+                    <TextView
+                        android:id="@+id/textView40"
+                        android:layout_margin="5dp"
+                        android:gravity="center_horizontal"
+                        android:text="26°F"></TextView>
+
+                    <TextView
+                        android:id="@+id/textView50"
+                        android:layout_margin="5dp"
+                        android:gravity="center_horizontal"
+                        android:text="23°F"></TextView>
+
+                    <TextView
+                        android:id="@+id/textView60"
+                        android:layout_margin="5dp"
+                        android:gravity="center_horizontal"
+                        android:text="17°F"></TextView>
+
+                    <TextView
+                        android:id="@+id/textView70"
+                        android:layout_margin="5dp"
+                        android:gravity="center_horizontal"
+                        android:text="19°F"></TextView>
+                </TableRow>
+
+
+            </TableLayout>
+        </ScrollView>
+    </HorizontalScrollView>
+
+</RelativeLayout>
